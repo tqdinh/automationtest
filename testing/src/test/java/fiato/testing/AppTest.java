@@ -34,7 +34,7 @@ public class AppTest {
 	@Test
 	public void aclickLogin()
 	{
-		
+	/*	
 		MobileBy etusername = (MobileBy) MobileBy.AccessibilityId("Username");
 		MobileElement metusername= (MobileElement) driver.findElement(etusername);		
 		if(true==		isVisible(etusername))
@@ -70,8 +70,10 @@ public class AppTest {
 			
 		}
 		
+		*/
+//		By okButton=By.xpath("//android.widget.Button[@index='1']");
+		By okButton=By.xpath("//android.widget.Button[@text='OK']");
 		
-		By okButton=By.xpath("//*[@index='1']");
 	//	SleepUntil(etPasse,20);		
 		driver.findElement(okButton).click();
 		

@@ -9,46 +9,10 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">Suite1</th></tr>
-<tr><td><a href="#t0">aclickLogin</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">78,046</td><td></td><td></td></tr>
+<tr><td><a href="#t0">aclickLogin</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">17,178</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite1</th></tr></tbody><tbody id="t0"><tr><th colspan="4">aclickLogin &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">fiato.testing.AppTest</td><td><a href="#m0">aclickLogin</a></td><td rowspan="1">1555930844025</td><td rowspan="1">69017</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite1</th></tr></tbody><tbody id="t0"><tr><th colspan="4">aclickLogin &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">fiato.testing.AppTest</td><td><a href="#m0">aclickLogin</a></td><td rowspan="1">1555932131506</td><td rowspan="1">8109</td></tr></tbody>
 </table>
-<h2>aclickLogin</h2><h3 id="m0">fiato.testing.AppTest#aclickLogin</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.AccessibilityId: Password (tried for 20 second(s) with 1000 milliseconds interval)
-	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:304)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at fiato.testing.AppTest.SleepUntil(AppTest.java:121)
-	at fiato.testing.AppTest.aclickLogin(AppTest.java:57)
-Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;DESKTOP-J9I1I74&apos;, ip: &apos;192.168.13.2&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;12.0.1&apos;
-Driver info: io.appium.java_client.android.AndroidDriver
-Capabilities {appActivity: com.facebook.katana.LoginAc..., appPackage: com.facebook.katana, automationName: UiAutomator2, databaseEnabled: false, desired: {appActivity: com.facebook.katana.LoginAc..., appPackage: com.facebook.katana, automationName: UiAutomator2, deviceName: Geny, platformName: android}, deviceApiLevel: 26, deviceManufacturer: Genymotion, deviceModel: Google Pixel 2 XL - 8.0 - A..., deviceName: 192.168.13.102:5555, deviceScreenDensity: 560, deviceScreenSize: 1440x2880, deviceUDID: 192.168.13.102:5555, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, pixelRatio: 3.5, platform: LINUX, platformName: Android, platformVersion: 8.0.0, statBarHeight: 84, takesScreenshot: true, viewportRect: {height: 2628, left: 0, top: 84, width: 1440}, warnings: {}, webStorageEnabled: false}
-Session ID: cf26b231-2d47-480a-bc40-997b9e89c32a
-*** Element info: {Using=accessibility id, value=Password}
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:42)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:62)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at io.appium.java_client.FindsByAccessibilityId.findElementByAccessibilityId(FindsByAccessibilityId.java:37)
-	at io.appium.java_client.MobileBy$ByAccessibilityId.findElement(MobileBy.java:342)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:58)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.android.AndroidDriver.findElement(AndroidDriver.java:1)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-	... 27 more
-... Removed 30 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>aclickLogin</h2><h3 id="m0">fiato.testing.AppTest#aclickLogin</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
