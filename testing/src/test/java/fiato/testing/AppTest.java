@@ -1,5 +1,7 @@
 package fiato.testing;
 
+import static org.testng.Assert.assertTrue;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -13,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -29,53 +32,61 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
  * Unit test for simple App.
  */
 public class AppTest {
-	AppiumDriver driver;
-	Wait<MobileDriver> mobileWait;
+	static AppiumDriver driver;
+	static Wait<MobileDriver> mobileWait;
+	static final String strusername="0922224002";
+	static final String strpassword="aloha123";
 	@Test
-	public void aclickLogin()
+	public static void aclickLogin()
 	{
-	/*	
+		boolean passwordShowAtTheFirstTme=false;
 		MobileBy etusername = (MobileBy) MobileBy.AccessibilityId("Username");
-		MobileElement metusername= (MobileElement) driver.findElement(etusername);		
-		if(true==		isVisible(etusername))
-			metusername.sendKeys("0922224002");
-
-
+		MobileBy loginBtn = (MobileBy) MobileBy.AccessibilityId("Login click");		
+		MobileBy etPassword = (MobileBy) MobileBy.AccessibilityId("Password");	
 		
-		MobileBy etPasse = (MobileBy) MobileBy.AccessibilityId("Password");
-		MobileElement metPasse= (MobileElement) driver.findElement(etPasse);		
-		if(true==isVisible(etPasse))
-			metPasse.sendKeys("aloha123");
-		
-		
-		MobileBy loginBtnxxx = (MobileBy) MobileBy.AccessibilityId("Login click");				
-		MobileElement mExx= (MobileElement) driver.findElement(loginBtnxxx);
-		mExx.click();
-	
-		
-		
-		SleepUntil(etPasse,20);		
-		metPasse= (MobileElement) driver.findElement(etPasse);		
-		
-		if(true==isVisible(etPasse))
+		//MobileBy permissionDeny = (MobileBy) By.id("com.android.packageinstaller:id/permission_deny_button");	
+		if(true==isVisible(etusername))
 		{
-			metPasse.sendKeys("aloha123");
-			
-			MobileBy loginBtnSecond = (MobileBy) MobileBy.AccessibilityId("Login click");		
-		
-			MobileElement mloginBtnSecond= (MobileElement) driver.findElement(loginBtnSecond);
-			mloginBtnSecond.click();
-	
-			
-			
+			MobileElement metusername= (MobileElement) driver.findElement(etusername);	
+			metusername.sendKeys(strusername);
 		}
 		
-		*/
-//		By okButton=By.xpath("//android.widget.Button[@index='1']");
-		By okButton=By.xpath("//android.widget.Button[@text='OK']");
 		
-	//	SleepUntil(etPasse,20);		
-		driver.findElement(okButton).click();
+		
+
+		if(false==isVisible(etPassword))
+		{
+			MobileElement mLogin01= (MobileElement) driver.findElement(loginBtn);
+			mLogin01.click();
+			
+		
+			MobileElement metPassword= (MobileElement) driver.findElement(etPassword);		
+			metPassword.sendKeys(strpassword);
+			
+			
+			MobileElement mLogin02= (MobileElement) driver.findElement(loginBtn);
+			mLogin02.click();
+			
+		}
+		else
+		{
+			MobileElement metPass0= (MobileElement) driver.findElement(etPassword);	
+			metPass0.sendKeys(strpassword);
+			MobileElement mLogin00= (MobileElement) driver.findElement(loginBtn);
+			mLogin00.click();
+		}
+		
+
+	
+	
+		
+//		By okButton=By.xpath("//android.widget.Button[@index='1']");
+	//	By okButton=By.xpath("//android.widget.Button[@text='OK']");
+		//SleepUntil(okButton,5);		
+	//	driver.findElement(okButton).click();
+		
+	//	MobileElement denyButton= (MobileElement) driver.findElement(permissionDeny);
+	//	denyButton.click();
 		
 	}
 	
@@ -89,7 +100,7 @@ public class AppTest {
 	
 	
 	@BeforeMethod
-	public void before()
+	public static void before()
 	{
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 	    capabilities.setCapability("deviceName", "Geny");
@@ -108,7 +119,7 @@ public class AppTest {
 			e.printStackTrace();
 		}
 
-	    driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 	
 	@AfterMethod
@@ -117,30 +128,42 @@ public class AppTest {
 		//driver.quit();
 	}
 	
-	public void SleepUntil(By object,int milisecs)
+	public static void SleepUntil(By object,int milisecs)
 	{
 		mobileWait=setupFluentWait(milisecs,1);
 		mobileWait.until(ExpectedConditions.visibilityOfElementLocated(object));
 	}
    
 	
-	public boolean isVisible(By object)
-	{
-		mobileWait=setupFluentWait(10,1);
-		if(null!=mobileWait.until(ExpectedConditions.visibilityOfElementLocated(object)))
-		{
-			return true;
+	public static boolean isVisible(By object){
+		boolean ret=true;
+		try {
+			mobileWait=setupFluentWait(3,1);
+			mobileWait.until(ExpectedConditions.visibilityOfElementLocated(object));
 		}
-		return false;
+		catch(Exception e){
+			ret=false;
+		//	e.printStackTrace();
+		}
+		return ret;
 	}
 	
 	
-	 public Wait<MobileDriver> setupFluentWait(int timeoutInSeconds, int pollingTimeInSeconds) {    
+	 public static Wait<MobileDriver> setupFluentWait(int timeoutInSeconds, int pollingTimeInSeconds) {    
 		 Wait<MobileDriver> fluentWait = new FluentWait<MobileDriver>(driver)
 		        .withTimeout(Duration.ofSeconds(timeoutInSeconds))        
 		        .pollingEvery(Duration.ofSeconds(pollingTimeInSeconds))
 		        .ignoring(NoSuchElementException.class);
 		    return fluentWait;
 		  }
-	
+	 
+	 public  void main() {
+		 aclickLogin();
+	 }
+	 
+	 public static  void main( String[] args )
+	    {
+		 before();
+		 aclickLogin();
+	    }
 }

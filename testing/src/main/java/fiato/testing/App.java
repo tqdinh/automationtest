@@ -1,13 +1,16 @@
 package fiato.testing;
 
+import org.testng.TestListenerAdapter;
+
+
+import com.beust.testng.TestNG;
+
+
 /**
  * Hello world!
  *
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+	
 }
