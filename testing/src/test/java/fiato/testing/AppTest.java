@@ -12,6 +12,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -69,23 +70,28 @@ public class AppTest {
 				mLogin00.click();
 			}
 
-		
-		}
-		else
-		{
-			
-		}
-		
-		//		By okButton=By.xpath("//android.widget.Button[@index='1']");
-		 By okButton=By.xpath("//android.widget.Button[@text='OK']");
-		 SleepUntil(okButton,5);
-		 driver.findElement(okButton).click();
+		} else {
 
-		 MobileElement denyButton= (MobileElement) driver.findElement(permissionDeny);
-		 denyButton.click();
-		 
-		 By scrol= By.xpath("(//android.view.ViewGroup[@content-desc='Go to profile'])[1]/..");
-		 scrollBy(scrol,0,-500);
+		}
+
+		// By okButton=By.xpath("//android.widget.Button[@index='1']");
+		By okButton = By.xpath("//android.widget.Button[@text='OK']");
+		SleepUntil(okButton, 5);
+		driver.findElement(okButton).click();
+		if (true == isVisible(permissionDeny)) {
+			MobileElement denyButton = (MobileElement) driver.findElement(permissionDeny);
+			denyButton.click();
+		}
+
+//		By scrol = By.xpath("(//android.view.ViewGroup[@content-desc='Go to profile'])[1]/..");
+		
+		for(int i=0;i<5;i++)
+		{
+			By scrol = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
+			scrollBy(scrol, 0, -500, 10);
+		}
+		
+		
 	}
 
 //	@Test
@@ -117,7 +123,7 @@ public class AppTest {
 
 	@AfterMethod
 	public static void after() {
-	 driver.quit();
+		driver.quit();
 	}
 
 	public static void SleepUntil(By object, int milisecs) {
@@ -153,20 +159,14 @@ public class AppTest {
 		aclickLogin();
 		after();
 	}
-	
-	public static void scrollBy(By locator,int xPixel, int yPixel) {
+
+	public static void scrollBy(By locator, int xPixel, int yPixel, int numberOfScrool) {
 //	    String scriptScroll = "window.scrollBy(" + xPixel + "," + yPixel + ")";
 //	    JavascriptExecutor js = (JavascriptExecutor) driver;    
 //	    js.executeScript(scriptScroll);
-	    
-	    Actions act = new Actions(driver);
-	    act.moveToElement(driver.findElement(locator)).clickAndHold().moveByOffset(xPixel, yPixel).moveByOffset(xPixel, yPixel).moveByOffset(xPixel, yPixel).moveByOffset(xPixel, yPixel).release().perform();
-	    try {
-			Thread.sleep((long)(10000+Math.random()%60000));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	  }
-	
+
+		Actions act = new Actions(driver);
+		act.moveToElement(driver.findElement(locator)).clickAndHold().moveByOffset(xPixel, yPixel).release().pause(2000).perform();
+	}
+
 }
