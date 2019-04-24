@@ -82,14 +82,27 @@ public class AppTest {
 			MobileElement denyButton = (MobileElement) driver.findElement(permissionDeny);
 			denyButton.click();
 		}
+		
+		try {
+			Thread.sleep((long)(10000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 //		By scrol = By.xpath("(//android.view.ViewGroup[@content-desc='Go to profile'])[1]/..");
 		
-		for(int i=0;i<5;i++)
-		{
-			By scrol = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
-			scrollBy(scrol, 0, -500, 10);
-		}
+		By scrolldown = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
+		scrollBy(scrolldown, 0, 500);
+
+		By scrolldown1 = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
+		scrollBy(scrolldown1, 0, 500);
+
+		By scrolldown2 = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
+		scrollBy(scrolldown2, 0, 500);
+
+		By scrollup1 = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
+		scrollBy(scrollup1, 0, -500);
 		
 		
 	}
@@ -154,17 +167,16 @@ public class AppTest {
 		aclickLogin();
 	}
 
-	public static void main(String[] args) {
+	public static void mainx(String[] args) {
 		before();
 		aclickLogin();
 		after();
 	}
 
-	public static void scrollBy(By locator, int xPixel, int yPixel, int numberOfScrool) {
-//	    String scriptScroll = "window.scrollBy(" + xPixel + "," + yPixel + ")";
-//	    JavascriptExecutor js = (JavascriptExecutor) driver;    
-//	    js.executeScript(scriptScroll);
-
+	
+	
+	
+	public static void scrollBy(By locator, int xPixel, int yPixel) {
 		Actions act = new Actions(driver);
 		act.moveToElement(driver.findElement(locator)).clickAndHold().moveByOffset(xPixel, yPixel).release().pause(2000).perform();
 	}

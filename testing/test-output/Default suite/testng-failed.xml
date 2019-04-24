@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="fiato.testing.AppTest">
+      <class name="fiato.testing.Facebook">
         <methods>
-          <include name="aclickLogin"/>
-          <include name="before"/>
           <include name="after"/>
+          <include name="login"/>
+          <include name="before"/>
         </methods>
-      </class> <!-- fiato.testing.AppTest -->
+      </class> <!-- fiato.testing.Facebook -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

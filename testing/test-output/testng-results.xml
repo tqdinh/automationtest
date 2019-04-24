@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-04-23T07:28:16Z" name="Default suite" finished-at="2019-04-23T07:28:40Z" duration-ms="23954">
+  <suite started-at="2019-04-24T10:52:48Z" name="Default suite" finished-at="2019-04-24T10:53:12Z" duration-ms="24430">
     <groups>
     </groups>
-    <test started-at="2019-04-23T07:28:16Z" name="Default test" finished-at="2019-04-23T07:28:40Z" duration-ms="23954">
-      <class name="fiato.testing.AppTest">
-        <test-method is-config="true" signature="before()[pri:0, instance:fiato.testing.AppTest@96def03]" started-at="2019-04-23T07:28:16Z" name="before" finished-at="2019-04-23T07:28:25Z" duration-ms="8860" status="PASS">
+    <test started-at="2019-04-24T10:52:48Z" name="Default test" finished-at="2019-04-24T10:53:12Z" duration-ms="24430">
+      <class name="fiato.testing.Facebook">
+        <test-method is-config="true" signature="before()[pri:0, instance:fiato.testing.Facebook@550a1967]" started-at="2019-04-24T10:52:48Z" name="before" finished-at="2019-04-24T10:52:56Z" duration-ms="8609" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- before -->
-        <test-method signature="aclickLogin()[pri:0, instance:fiato.testing.AppTest@96def03]" started-at="2019-04-23T07:28:25Z" name="aclickLogin" finished-at="2019-04-23T07:28:40Z" duration-ms="15077" status="PASS">
+        <test-method signature="login()[pri:0, instance:fiato.testing.Facebook@550a1967]" started-at="2019-04-24T10:52:56Z" name="login" finished-at="2019-04-24T10:53:12Z" duration-ms="15582" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- aclickLogin -->
-        <test-method is-config="true" signature="after()[pri:0, instance:fiato.testing.AppTest@96def03]" started-at="2019-04-23T07:28:40Z" name="after" finished-at="2019-04-23T07:28:40Z" duration-ms="0" status="PASS">
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="after()[pri:0, instance:fiato.testing.Facebook@550a1967]" started-at="2019-04-24T10:53:12Z" name="after" finished-at="2019-04-24T10:53:12Z" duration-ms="213" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- after -->
-      </class> <!-- fiato.testing.AppTest -->
+      </class> <!-- fiato.testing.Facebook -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
