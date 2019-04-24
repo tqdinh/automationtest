@@ -23,14 +23,16 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.PressesKey;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 
 public class Facebook {
 
 	private static final int DEFAULT_TIMEOUT = 10000;// 10 secs ;
 
-	private static  String strusername = "";
-	private static  String strpassword = "";
+	private static String strusername = "";
+	private static String strpassword = "";
 
 	private AppiumDriver driver;
 	private Wait<MobileDriver> mobileWait;
@@ -38,6 +40,7 @@ public class Facebook {
 	private static Facebook instance = null;
 
 	private static DesiredCapabilities capabilities = null;
+	List<MobileElement> rows;
 
 	static Facebook getInstance() {
 		if (null == instance) {
@@ -49,11 +52,10 @@ public class Facebook {
 	private Facebook() {
 		before();
 	}
-	
-	public void SetUserNameAndPassword(String username,String password)
-	{
-		strusername=username;
-		strpassword=password;
+
+	public void SetUserNameAndPassword(String username, String password) {
+		strusername = username;
+		strpassword = password;
 	}
 
 	@BeforeMethod
@@ -171,8 +173,8 @@ public class Facebook {
 				denyButton.click();
 			}
 		}
-		//Scrool();
-		//GetStory();
+		// Scrool();
+		// GetStory();
 	}
 
 	public void Scrool() {
@@ -185,22 +187,42 @@ public class Facebook {
 			By scrolldown = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
 			scrollBy(scrolldown, 0, 500);
 		}
-		
+
+		try {
+			Thread.sleep((long) (5000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
-	
-	public void GetStory(int index)
-	{
+
+	public void GetStory() {
 		By storyParent = By.xpath("(//*[@class='androidx.recyclerview.widget.RecyclerView'])[2]/*");
-		List<MobileElement> rows=driver.findElements(storyParent);
-		int storySize=rows.size();
-		System.out.println("size: "+storySize);
-		if(index<storySize)
-		{
-			MobileElement element=rows.get(index);
+		rows = driver.findElements(storyParent);
+		try {
+			Thread.sleep((long) (5000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void ClickStory(int index) {
+		int storySize = rows.size();
+		System.out.println("size: " + storySize);
+		if (index < storySize) {
+			MobileElement element = rows.get(index);
 			element.click();
 		}
-		
-		
+
+		try {
+			Thread.sleep((long) (10000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.navigate().back();
 	}
 
 	public void LogoutAndRelogin() {
@@ -215,9 +237,6 @@ public class Facebook {
 		MobileElement me_menu = findElement(menubutton, 10000);
 		me_menu.click();
 
-	
-	
-		
 		By menuLayout = By.xpath("//*[@class='androidx.recyclerview.widget.RecyclerView']");
 		scrollBy(menuLayout, 0, -500);
 		scrollBy(menuLayout, 0, -500);
@@ -226,16 +245,15 @@ public class Facebook {
 		MobileElement btnLogout = findElement(logout, 1000);
 		if (null != btnLogout)
 			btnLogout.click();
-		 Dimension dimensions = driver.manage().window().getSize();
-		  int screenWidth = dimensions.getWidth();
-		  int screenHeight = dimensions.getHeight();
-		  System.out.println("w: "+screenWidth);
-		  System.out.println("h: "+screenHeight);
+		Dimension dimensions = driver.manage().window().getSize();
+		int screenWidth = dimensions.getWidth();
+		int screenHeight = dimensions.getHeight();
+		System.out.println("w: " + screenWidth);
+		System.out.println("h: " + screenHeight);
 		By relogin = By.xpath("(//*[@class='android.widget.LinearLayout' and @index='5'])");
 		MobileElement btnRelogin = findElement(relogin, 1000);
 		if (null != btnRelogin)
 			btnRelogin.click();
-
 
 	}
 

@@ -83,12 +83,7 @@ public class AppTest {
 			denyButton.click();
 		}
 		
-		try {
-			Thread.sleep((long)(10000));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 //		By scrol = By.xpath("(//android.view.ViewGroup[@content-desc='Go to profile'])[1]/..");
 		

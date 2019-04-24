@@ -10,8 +10,10 @@ public class Application {
 		fb.login();
 		fb.Scrool();
 		//fb.LogoutAndRelogin();
-		fb.GetStory(1);
-		
+		fb.GetStory();
+		fb.ClickStory(1);
+		fb.ClickStory(2);
+		fb.ClickStory(1);
 //		Facebook fb1 = Facebook.getInstance();
 //		fb1.SetUserNameAndPassword("Binhnguyen@daoedu.us", "123456?v");
 //		fb1.login();
