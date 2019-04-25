@@ -40,7 +40,8 @@ public class Facebook {
 	private static Facebook instance = null;
 
 	private static DesiredCapabilities capabilities = null;
-	List<MobileElement> rows;
+	List<MobileElement> stories;
+	List<MobileElement> suggestingFriends;
 
 	static Facebook getInstance() {
 		if (null == instance) {
@@ -129,6 +130,16 @@ public class Facebook {
 		return ret;
 	}
 
+	private List<MobileElement> findElements(By locator, int timeout) {
+		try {
+			SleepUntilInmilisecs(locator, timeout);
+			return driver.findElements(locator);
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
 	@Test
 	public void login() {
 		boolean passwordShowAtTheFirstTme = false;
@@ -177,6 +188,39 @@ public class Facebook {
 		// GetStory();
 	}
 
+	public void UploadAvatarAndAddFriend() {
+
+		By takePhoto = By.xpath("(//*[@class='android.widget.Button'])[2]");
+		By chooseFromGalary = By.xpath("(//*[@class='android.widget.Button'])[3]");
+
+		// MobileElement me_chooseFromGalary=findElement(takePhoto,10000);
+		// me_chooseFromGalary.click();
+		By skip0 = By.xpath("(//*[@class='android.widget.Button'])[1]");
+		MobileElement me_skip0 = findElement(skip0, 10000);
+		me_skip0.click();
+
+		// By getStarted = By.xpath("(//*[@class='android.widget.Button'])[1]");
+		// findElement(getStarted,1000).click();
+
+		By skip1 = By.xpath("(//*[@class='android.widget.Button'])[1]");
+		MobileElement me_skip1 = findElement(skip1, 10000);
+		me_skip1.click();
+
+		By skipfindFriend = By.xpath("(//*[@class='android.widget.Button'])[1]");
+		By findFriend = By.xpath("(//*[@class='android.widget.Button'])[2]");
+
+		findElement(skipfindFriend, 10000).click();
+
+		By add5Friend = By.xpath("(//*[@class='android.widget.Button'])[2]");
+
+		findElement(add5Friend, 10000).click();
+
+		By okButton = By.xpath("//android.widget.Button[@text='OK']");
+
+		findElement(okButton, 10000).click();
+
+	}
+
 	public void Scrool() {
 		for (int i = 0; i < 5; i++) {
 			By scrollup = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
@@ -199,7 +243,7 @@ public class Facebook {
 
 	public void GetStory() {
 		By storyParent = By.xpath("(//*[@class='androidx.recyclerview.widget.RecyclerView'])[2]/*");
-		rows = driver.findElements(storyParent);
+		stories = driver.findElements(storyParent);
 		try {
 			Thread.sleep((long) (5000));
 		} catch (InterruptedException e) {
@@ -209,10 +253,10 @@ public class Facebook {
 	}
 
 	public void ClickStory(int index) {
-		int storySize = rows.size();
+		int storySize = stories.size();
 		System.out.println("size: " + storySize);
 		if (index < storySize) {
-			MobileElement element = rows.get(index);
+			MobileElement element = stories.get(index);
 			element.click();
 		}
 
@@ -254,6 +298,162 @@ public class Facebook {
 		MobileElement btnRelogin = findElement(relogin, 1000);
 		if (null != btnRelogin)
 			btnRelogin.click();
+
+	}
+
+	public void CreateAcc() {
+		MobileBy createAccount = (MobileBy) MobileBy.AccessibilityId("Create New Facebook Account");
+
+		By next = By.xpath("//*[@class='android.widget.Button']");
+
+		By permissionDeny0 = By.id("com.android.packageinstaller:id/permission_deny_button");
+
+		By permissionDeny1 = By.id("com.android.packageinstaller:id/permission_deny_button");
+		By noneOfAbove = By.id("com.google.android.gms:id/cancel");
+
+		By previousAcc = By.xpath("(//*[@class='android.widget.LinearLayout'])[4]");
+
+	}
+
+	public void CreateAccName() {
+
+		By uname = By.xpath("(//*[@class='android.widget.EditText' and @index='0'])[1]");
+		By pass = By.xpath("(//*[@class='android.widget.EditText' and @index='0'])[2]");
+		;
+		By btnNext = By.xpath("(//*[@class='android.widget.Button'])");
+	}
+
+	public void CreateDOB() {
+		By btnDateTop = By.xpath("(//*[@class='android.widget.Button'])[1]");
+		By btnDateBottom = By.xpath("(//*[@class='android.widget.Button'])[2]");
+
+		By btnMonthTop = By.xpath("(//*[@class='android.widget.Button'])[3]");
+		By btnMonthBottom = By.xpath("(//*[@class='android.widget.Button'])[4]");
+
+		By btnYearTop = By.xpath("(//*[@class='android.widget.Button'])[5]");
+		By btnYearBottom = By.xpath("(//*[@class='android.widget.Button'])[6]");
+
+	}
+
+	public void CreateSex() {
+		By male = By.xpath("(//*[@class='android.widget.RadioButton'])[1]");
+		By female = By.xpath("(//*[@class='android.widget.RadioButton'])[2]");
+
+		By btnYearBottom = By.xpath("android.widget.Button");
+	}
+
+	public void PhoneVerify() {
+		By phoneNumber = By.xpath("android.widget.EditText");
+		By next = By.xpath("android.widget.Button");
+		By verifyWithEmail = By.xpath("(//*[@class='android.widget.TextView'])[3]");
+
+	}
+
+	public void EmailVerify() {
+		By email = By.xpath("(//*[@class='android.widget.EditText'])");
+		By next = By.xpath("(//*[@class='android.widget.Button'])");
+		By verifyWithPhone = By.xpath("(//*[@class='android.widget.TextView'])[3]");
+
+		By password = By.xpath("(//*[@class='android.widget.EditText'])");
+		By submitpassword = By.xpath("	(//*[@class='android.widget.Button'])");
+
+	}
+
+	public void FinishSigningUp() {
+		By term = By.xpath("(//*[@class='android.widget.Button'])[1]");
+		By policy = By.xpath("(//*[@class='android.widget.Button'])[2]");
+		By cookies = By.xpath("(//*[@class='android.widget.Button'])[3]");
+		By signUp = By.xpath("(//*[@class='android.widget.Button'])[4]");
+
+		By signUpWithOutUploading = By.xpath("(//*[@class='android.widget.TextView'])[4]");
+		By learnMore = By.xpath("(//*[@class='android.widget.Button'])[5]");
+	}
+
+	public void ClickFriendAndBack(MobileElement friend) {
+		friend.click();
+		try {
+			Thread.sleep((long) (1000 + Math.random() % 60000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver.navigate().back();
+	}
+
+	public void AddFriend() {
+		String friendxPath = "((((((//*[@class='android.view.ViewGroup' and @content-desc='See All'])/..)/child::*)[2]/child::*)/child::*))";
+		By seeAllFriend = By.xpath("(//*[@class='android.view.ViewGroup' and @content-desc='See All'])");
+		By byFriends = By.xpath(friendxPath);
+
+		// By suggestionHolder0 = By.xpath("(//*[@class='android.view.ViewGroup' and
+		// @content-desc='See All'])/parent::android.view.ViewGroup");
+
+		// By suggestionHolder1 = By.xpath("((//*[@class='android.view.ViewGroup' and
+		// @content-desc='See All'])/ancestor::android.view.ViewGroup)[2]");
+		/*
+		 * 
+		 * ((((((//*[@class='android.view.ViewGroup' and @content-desc='See
+		 * All'])/..)/child::*)[2]/child::*)/child::*)[1])[1]
+		 * 
+		 */
+		suggestingFriends = findElements(byFriends, 1000);
+		// if(suggestingFriends.size()>0)
+		// {
+		//
+//			MobileElement friend=suggestingFriends.get(0);
+//			//ClickFriendAndBack(friend);
+
+//		}
+
+		for (int i = 0; i < suggestingFriends.size(); i++) {
+
+			// ((((((//*[@class='android.view.ViewGroup' and @content-desc='See
+			// All'])/..)/child::*)[2]/child::*)/child::*))
+
+			NewSuggesionFriendInterract(friendxPath + "[" + i + 1 + "]/*");
+			System.out.println("ssssssssss " + friendxPath + "[" + i + 1 + "]/*");
+			// scroolNewFriendList(10,false);
+
+		}
+
+		System.out.println("size: " + suggestingFriends.size());
+
+	}
+
+	public void NewSuggesionFriendInterract(String xpath) {
+
+		By myFriend = By.xpath(xpath);
+		List<MobileElement> button = findElements(myFriend, 1000);
+		MobileElement avatar = button.get(0);
+		avatar.click();
+
+		try {
+			Thread.sleep((long) (1000 + Math.random() % 60000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		MobileBy mb_back = (MobileBy) MobileBy.AccessibilityId("Back");
+		MobileElement btnBack = findElement(mb_back,1000);
+		btnBack.click();
+		// driver.navigate().back();
+		// MobileElement infomation = button.get(1);
+		// MobileElement add = button.get(2);
+		// MobileElement remove = button.get(3);
+
+	}
+
+	public void scroolNewFriendList(int time, boolean right) {
+		for (int i = 0; i < time; i++) {
+			if (true == right) {
+				By suggestionHolder = By.xpath("(//*[@class='android.view.ViewGroup' and @content-desc='See All'])/..");
+				scrollBy(suggestionHolder, 500, 0);
+			} else {
+				By suggestionHolder = By.xpath("(//*[@class='android.view.ViewGroup' and @content-desc='See All'])/..");
+				scrollBy(suggestionHolder, -500, 0);
+			}
+		}
 
 	}
 
