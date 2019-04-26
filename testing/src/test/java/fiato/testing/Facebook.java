@@ -109,7 +109,7 @@ public class Facebook {
 			Actions act = new Actions(driver);
 			SleepUntilInmilisecs(locator, DEFAULT_TIMEOUT);
 			act.moveToElement(driver.findElement(locator)).clickAndHold().moveByOffset(xPixel, yPixel).release()
-					.pause(2000).perform();
+					.pause(1500).perform();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -234,6 +234,38 @@ public class Facebook {
 
 		try {
 			Thread.sleep((long) (5000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void SweepUp(int time) {
+
+		for (int i = 0; i < time; i++) {
+			By scrolldown = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
+			scrollBy(scrolldown, 0, -500);
+		}
+
+		try {
+			Thread.sleep((long) (500));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void SweepDown(int time) {
+
+		for (int i = 0; i < time; i++) {
+			By scrolldown = By.xpath("(//*[@class='android.widget.FrameLayout'])[1]");
+			scrollBy(scrolldown, 0, 500);
+		}
+
+		try {
+			Thread.sleep((long) (1000));
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -420,6 +452,154 @@ public class Facebook {
 
 	}
 
+	public boolean findFriendSuggession(int stopSweepAfter) {
+		for (int i = 0; i < stopSweepAfter; i++) {
+			By suggestionHolder = By.xpath("(//*[@class='android.view.ViewGroup' and @content-desc='See All'])/..");
+			if (isVisibleOnTimeOutInsecond(suggestionHolder, 2, 1)) {
+				addFriendOnMainContent();
+				break;
+			} else {
+				SweepUp(1);
+			}
+		}
+
+		return true;
+	}
+
+	public void AddFriendAndScrool() {
+		String friendxPath = "((((((//*[@class='android.view.ViewGroup' and @content-desc='See All'])/..)/child::*)[2]/child::*)/child::*))";
+		By seeAllFriend = By.xpath("(//*[@class='android.view.ViewGroup' and @content-desc='See All'])");
+		By byFriends = By.xpath(friendxPath);
+
+		suggestingFriends = findElements(byFriends, 1000);
+		// NewSuggesionFriendInterract(friendxPath + "[1]/*");
+
+		NewSuggesionFriendAddAndScroll(friendxPath + "[1]/*");
+	}
+
+	public void NewSuggesionFriendAddAndScroll(String xpath) {
+
+		By myFriend = By.xpath(xpath);
+		List<MobileElement> button = findElements(myFriend, 1000);
+		MobileElement avatar = button.get(0);
+		avatar.click();
+
+		try {
+			Thread.sleep((long) (1000 + Math.random() % 60000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		MobileBy mb_back = (MobileBy) MobileBy.AccessibilityId("Back");
+		MobileElement btnBack = findElement(mb_back, 1000);
+		btnBack.click();
+		//
+		MobileElement infomation = button.get(1);
+
+		try {
+			Thread.sleep((long) (1000 + Math.random() % 60000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		MobileElement add = button.get(2);
+		add.click();
+
+		scroolNewFriendList(1, false);
+		MobileElement remove = button.get(3);
+
+	}
+
+	public void addFriendOnMainContent() {
+		String friendxPaths = "((((((//*[@class='android.view.ViewGroup' and @content-desc='See All'])/..)/child::*)[2]/child::*)/child::*))";
+		By myFriend = By.xpath(friendxPaths + "[1]/*");
+		MobileElement mySuggesing = findElement(myFriend, 1000);
+		if (null != mySuggesing) {
+			System.out.println("myFriend");
+			mySuggesing.click();
+		}
+
+		try {
+			Thread.sleep((long) (1000 + Math.random() % 2000));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//
+		String strrecycleView = "((((//*[@class='android.view.ViewGroup' and @content-desc!=''])[1])/../../..)/child::*)";
+		By recycleView = By.xpath(strrecycleView);
+
+		
+		System.out.println(strrecycleView);
+		
+		List<MobileElement> listElement = findElements(recycleView, 1000);
+		for (int i = 1; i <= listElement.size(); i++) {
+			
+			System.out.println(strrecycleView+"[" + i + "]");
+			By elemet = By.xpath(strrecycleView + "[" + i  + "]");
+
+			List<MobileElement> list = findElements(elemet, 1000);
+			try {
+				Thread.sleep((long) (1000));
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (list.size() >= 3) {
+				System.out.println("found");
+				break;
+			}
+		}
+//		
+//		if (null != add)
+//		{
+//			System.out.println("add");
+//			add.click();
+//		}
+//		try {
+//			Thread.sleep((long) (1000 + Math.random() % 20000));
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		MobileBy close = (MobileBy) MobileBy.AccessibilityId("Close");
+//		MobileElement me_close = findElement(close, 1000);
+//		if (null != me_close)
+//		{
+//			System.out.println("close");
+//			me_close.click();
+//		}
+//		else {
+//			System.out.println("back");
+//			driver.navigate().back();
+//		}
+//
+//		try {
+//			Thread.sleep((long) (1000 + Math.random() % 20000));
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		By back = By.xpath("(//*[@class='android.widget.ImageView'])[1]");
+//		MobileElement me_click = findElement(back, 1000);
+//		if (null != me_click)
+//		{
+//			System.out.println("back to main app");
+//			me_click.click();
+//		}
+//		try {
+//			Thread.sleep((long) (1000 + Math.random() % 20000));
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+	}
+
 	public void NewSuggesionFriendInterract(String xpath) {
 
 		By myFriend = By.xpath(xpath);
@@ -435,12 +615,13 @@ public class Facebook {
 		}
 
 		MobileBy mb_back = (MobileBy) MobileBy.AccessibilityId("Back");
-		MobileElement btnBack = findElement(mb_back,1000);
+		MobileElement btnBack = findElement(mb_back, 1000);
 		btnBack.click();
-		// driver.navigate().back();
-		// MobileElement infomation = button.get(1);
-		// MobileElement add = button.get(2);
-		// MobileElement remove = button.get(3);
+		//
+		MobileElement infomation = button.get(1);
+
+		MobileElement add = button.get(2);
+		MobileElement remove = button.get(3);
 
 	}
 
