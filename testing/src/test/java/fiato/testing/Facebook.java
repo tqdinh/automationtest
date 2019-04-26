@@ -535,68 +535,19 @@ public class Facebook {
 		System.out.println(strrecycleView);
 		
 		List<MobileElement> listElement = findElements(recycleView, 1000);
-		for (int i = 1; i <= listElement.size(); i++) {
+		for (int i = 0; i < listElement.size(); i++) {
 			
-			System.out.println(strrecycleView+"[" + i + "]");
-			By elemet = By.xpath(strrecycleView + "[" + i  + "]");
-
+			String searching="(((((//*[@class='android.view.ViewGroup' and @content-desc!=''])[1])/../../..)/child::*)[%d])/child::*";
+			searching=String.format(searching, i+1);
+			System.out.println(searching);
+			By elemet = By.xpath(searching);
 			List<MobileElement> list = findElements(elemet, 1000);
-			try {
-				Thread.sleep((long) (1000));
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
 			if (list.size() >= 3) {
 				System.out.println("found");
 				break;
 			}
 		}
-//		
-//		if (null != add)
-//		{
-//			System.out.println("add");
-//			add.click();
-//		}
-//		try {
-//			Thread.sleep((long) (1000 + Math.random() % 20000));
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		MobileBy close = (MobileBy) MobileBy.AccessibilityId("Close");
-//		MobileElement me_close = findElement(close, 1000);
-//		if (null != me_close)
-//		{
-//			System.out.println("close");
-//			me_close.click();
-//		}
-//		else {
-//			System.out.println("back");
-//			driver.navigate().back();
-//		}
-//
-//		try {
-//			Thread.sleep((long) (1000 + Math.random() % 20000));
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		By back = By.xpath("(//*[@class='android.widget.ImageView'])[1]");
-//		MobileElement me_click = findElement(back, 1000);
-//		if (null != me_click)
-//		{
-//			System.out.println("back to main app");
-//			me_click.click();
-//		}
-//		try {
-//			Thread.sleep((long) (1000 + Math.random() % 20000));
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 
 	}
 
