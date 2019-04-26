@@ -541,10 +541,37 @@ public class Facebook {
 			searching=String.format(searching, i+1);
 			System.out.println(searching);
 			By elemet = By.xpath(searching);
-			List<MobileElement> list = findElements(elemet, 1000);
+			List<MobileElement> list = driver.findElementsByXPath(searching);
 		
 			if (list.size() >= 3) {
 				System.out.println("found");
+				list.get(0).click();
+				
+				
+				try {
+					Thread.sleep((long) (1000 + Math.random() % 2000));
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				By close_cross = By.xpath("//*[@class=\'android.widget.ImageView\' and @content-desc!='']");
+				MobileElement me_close_cross = findElement(close_cross, 1000);
+				me_close_cross.click();
+				
+				try {
+					Thread.sleep((long) (1000 + Math.random() % 2000));
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				MobileBy mb_back = (MobileBy) MobileBy.AccessibilityId("Back");
+				MobileElement btnBack = findElement(mb_back, 1000);
+				btnBack.click();
+				
+				
+				
 				break;
 			}
 		}

@@ -13,7 +13,22 @@ public class Application {
 		int numberOfSweep = 10;
 		
 		 fb.findFriendSuggession(20);
-		
+		 fb.scroolNewFriendList(1, false);
+		 
+		 
+		 fb.findFriendSuggession(20);
+		 fb.scroolNewFriendList(1, false);
+		 
+		 
+		 fb.findFriendSuggession(20);
+		 fb.scroolNewFriendList(1, false);
+		 
+		 fb.findFriendSuggession(20);
+		 fb.scroolNewFriendList(1, false);
+		 
+		 fb.findFriendSuggession(20);
+		 fb.scroolNewFriendList(1, false);
+		 
 //		while (numberOfSweep <= 0) {
 //			if )
 //				fb.SweepUp(1);
